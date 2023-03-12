@@ -15,7 +15,7 @@ jobs:
       # Create the release, use `gh` CLI so we can auto generate the notes
       - name: Create Release
         env:
-          GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
+          GH_TOKEN: ${{ secrets.BOT_PAT }}
         run: |
           TAG_VAL=$(echo ${{ github.REF }} | awk -F'refs/tags/' '{print $2}')
           gh release create ${TAG_VAL} --generate-notes --draft --repo xTVaser/launcher
