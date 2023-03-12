@@ -19,15 +19,21 @@ jobs:
         run: |
           TAG_VAL=$(echo ${{ github.REF }} | awk -F'refs/tags/' '{print $2}')
           gh release create ${TAG_VAL} --generate-notes --draft --repo xTVaser/launcher
+      - name: Setup Node
+        uses: actions/setup-node@v3
+        with:
+          node-version: 16
+          cache: yarn
       # Get the internal ID of the release so that Tauri's action can use it to upload assets
       - name: Get Release ID
         env:
           GH_TOKEN: ${{ secrets.BOT_PAT }}
+          GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
         id: get_release_id
         run: |
           TAG_VAL=$(echo ${{ github.REF }} | awk -F'refs/tags/' '{print $2}')
-          RELEASE_ID=$(gh release view "$TAG_VAL" --repo xTVaser/launcher --json id --template '{{.id}}')
-          echo "##[set-output name=release_id;]${RELEASE_ID}"
+          RELEASE_ID=$(TAG_NAME="$TAG_VAL" yarn --silent release-id)
+          echo "release_id=${RELEASE_ID}" >> $GITHUB_OUTPUT
 
   build-app:
     if: github.repository == 'xTVaser/launcher'
