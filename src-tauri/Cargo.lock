@@ -2248,7 +2248,7 @@ dependencies = [
 
 [[package]]
 name = "opengoal-launcher"
-version = "2.0.4"
+version = "2.0.5"
 dependencies = [
  "chrono",
  "dir-diff",
