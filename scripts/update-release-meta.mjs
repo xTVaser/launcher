@@ -114,7 +114,7 @@ if (releaseId === undefined || releaseId === "") {
 }
 
 // Pull down the `launcher` release metadata
-const launcherRelease = await octokit.rest.repos.release({
+const launcherRelease = await octokit.rest.repos.getRelease({
   owner: "xTVaser",
   repo: "launcher",
   release_id: releaseId,
