@@ -7,7 +7,7 @@ on:
 
 jobs:
   create-release:
-    if: github.repository == 'open-goal/launcher'
+    if: github.repository == 'xTVaser/launcher'
     runs-on: ubuntu-latest
     outputs:
       release_id: ${{ steps.get_release_id.outputs.release_id }}
@@ -18,17 +18,17 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
         run: |
           TAG_VAL=$(echo ${{ github.REF }} | awk -F'refs/tags/' '{print $2}')
-          gh release create ${TAG_VAL} --generate-notes --draft --repo open-goal/launcher
+          gh release create ${TAG_VAL} --generate-notes --draft --repo xTVaser/launcher
       # Get the internal ID of the release so that Tauri's action can use it to upload assets
       - name: Get Release ID
         id: get_release_id
         run: |
           TAG_VAL=$(echo ${{ github.REF }} | awk -F'refs/tags/' '{print $2}')
-          RELEASE_ID=$(gh release view "$TAG_VAL" --repo open-goal/launcher --json id --template '{{.id}}')
+          RELEASE_ID=$(gh release view "$TAG_VAL" --repo xTVaser/launcher --json id --template '{{.id}}')
           echo "##[set-output name=release_id;]${RELEASE_ID}"
 
   build-app:
-    if: github.repository == 'open-goal/launcher'
+    if: github.repository == 'xTVaser/launcher'
     needs: [create-release]
     strategy:
       fail-fast: false
@@ -122,7 +122,7 @@ jobs:
           releaseId: ${{needs.create-release.outputs.release_id}}
 
   publish-release:
-    if: github.repository == 'open-goal/launcher'
+    if: github.repository == 'xTVaser/launcher'
     needs: [create-release, build-app]
     runs-on: ubuntu-latest
     steps:
