@@ -78,40 +78,20 @@ jobs:
       - name: Prepare Release Config
         run: yarn prepare-release-config
 
-      - name: Prepare Resources for Build
+      - name: Prepare Sidecars for Build
         if: matrix.os == 'windows'
         run: |
-          mv ./opengoal*.zip ./opengoal.zip
-          mkdir ./artifact-out
-          tar -xf opengoal.zip -C ./artifact-out
-          ls ./artifact-out
-          ls ./artifact-out/data
           mkdir -p ./src-tauri/bin/
-          cp ./artifact-out/*.exe ./src-tauri/bin || true
           cp ./third-party/glew_2.2.0/windows/glewinfo.exe ./src-tauri/bin
-          chmod +x ./src-tauri/bin/*
-          cp -r ./artifact-out/data ./src-tauri
-          mv ./metadata.json ./src-tauri/data/metadata.json
-          ls ./src-tauri
           ls ./src-tauri/bin
-          ls ./src-tauri/data
 
       - name: Prepare Resources for Build
         if: matrix.os == 'linux'
         run: |
-          mv ./opengoal*.tar.gz ./opengoal.tar.gz
-          mkdir ./artifact-out
-          tar -xf opengoal.tar.gz -C ./artifact-out
-          ls ./artifact-out
-          ls ./artifact-out/data
           mkdir -p ./src-tauri/bin/
-          cp ./artifact-out/* ./src-tauri/bin || true
           cp ./third-party/glew_2.2.0/linux/glewinfo ./src-tauri/bin
-          cp -r ./artifact-out/data ./src-tauri
-          mv ./metadata.json ./src-tauri/data/metadata.json
-          ls ./src-tauri
+          chmod +x ./src-tauri/bin/*
           ls ./src-tauri/bin
-          ls ./src-tauri/data
 
       - uses: tauri-apps/tauri-action@v0
         name: Build Tauri App
