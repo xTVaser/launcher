@@ -15,6 +15,7 @@ jobs:
       - uses: actions/checkout@v3
         with:
           token: ${{ secrets.BOT_PAT }}
+
       # Create the release, use `gh` CLI so we can auto generate the notes
       - name: Create Release
         env:
@@ -22,11 +23,17 @@ jobs:
         run: |
           TAG_VAL=$(echo ${{ github.REF }} | awk -F'refs/tags/' '{print $2}')
           gh release create ${TAG_VAL} --generate-notes --draft --repo xTVaser/launcher
+
       - name: Setup Node
         uses: actions/setup-node@v3
         with:
           node-version: 16
           cache: yarn
+
+      - name: Install NPM Dependencies
+        run: |
+          yarn install --frozen-lockfile
+
       # Get the internal ID of the release so that Tauri's action can use it to upload assets
       - name: Get Release ID
         env:
