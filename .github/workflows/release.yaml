@@ -6,17 +6,38 @@ on:
       - v*
 
 jobs:
-  publish-tauri:
-    if: github.repository == 'open-goal/launcher'
+  create-release:
+    if: github.repository == 'xTVaser/launcher'
+    runs-on: ubuntu-latest
+    outputs:
+      release_id: ${{ steps.get_release_id.outputs.release_id }}
+    steps:
+      # Create the release, use `gh` CLI so we can auto generate the notes
+      - name: Create Release
+        env:
+          GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
+        run: |
+          TAG_VAL=$(echo ${{ github.REF }} | awk -F'refs/tags/' '{print $2}')
+          gh release create ${TAG_VAL} --generate-notes --draft --repo xTVaser/launcher
+      # Get the internal ID of the release so that Tauri's action can use it to upload assets
+      - name: Get Release ID
+        id: get_release_id
+        run: |
+          TAG_VAL=$(echo ${{ github.REF }} | awk -F'refs/tags/' '{print $2}')
+          RELEASE_ID=$(gh release view "$TAG_VAL" --repo xTVaser/launcher --json id --template '{{.id}}')
+          echo "##[set-output name=release_id;]${RELEASE_ID}"
+
+  build-app:
+    if: github.repository == 'xTVaser/launcher'
+    needs: [create-release]
     strategy:
       fail-fast: false
       matrix:
         include:
-          - platform: ubuntu-latest
+          - platform: ubuntu-20.04
             os: linux
-          - platform: windows-latest
+          - platform: ubuntu-20.04
             os: windows
-
     runs-on: ${{ matrix.platform }}
     steps:
       - uses: actions/checkout@v3
@@ -27,7 +48,7 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
-          cache: npm
+          cache: yarn
 
       - name: Install Rust Stable
         uses: actions-rs/toolchain@v1
@@ -41,30 +62,19 @@ jobs:
           workspaces: src-tauri
 
       - name: Install Linux Dependencies
-        if: matrix.platform == 'ubuntu-latest'
+        if: matrix.platform == 'ubuntu-20.04'
         run: |
           sudo apt-get update
           sudo apt-get install -y libgtk-3-dev webkit2gtk-4.0 libappindicator3-dev librsvg2-dev libglew2.1 patchelf
 
       - name: Install NPM Dependencies
         run: |
-          npm ci
-          npm run build
-
-      - name: Download jak-project Release
-        env:
-          JAK_PROJ_VERSION: latest
-          PLATFORM: ${{ matrix.os }}
-          DOWNLOAD_DIR: "./"
-        run: |
-          pushd ./.github/scripts/download-binaries
-          npm ci
-          popd
-          node ./.github/scripts/download-binaries/index.js
+          yarn install --frozen-lockfile
+          yarn package
+          yarn build
 
       - name: Prepare Release Config
-        run: |
-          npm run prepare-release-config
+        run: yarn prepare-release-config
 
       - name: Prepare Resources for Build
         if: matrix.os == 'windows'
@@ -76,7 +86,8 @@ jobs:
           ls ./artifact-out/data
           mkdir -p ./src-tauri/bin/
           cp ./artifact-out/*.exe ./src-tauri/bin || true
-          cp ./third-party/glew_2.1.0/windows/glewinfo.exe ./src-tauri/bin
+          cp ./third-party/glew_2.2.0/windows/glewinfo.exe ./src-tauri/bin
+          chmod +x ./src-tauri/bin/*
           cp -r ./artifact-out/data ./src-tauri
           mv ./metadata.json ./src-tauri/data/metadata.json
           ls ./src-tauri
@@ -93,7 +104,7 @@ jobs:
           ls ./artifact-out/data
           mkdir -p ./src-tauri/bin/
           cp ./artifact-out/* ./src-tauri/bin || true
-          cp ./third-party/glew_2.1.0/linux/glewinfo ./src-tauri/bin
+          cp ./third-party/glew_2.2.0/linux/glewinfo ./src-tauri/bin
           cp -r ./artifact-out/data ./src-tauri
           mv ./metadata.json ./src-tauri/data/metadata.json
           ls ./src-tauri
@@ -108,20 +119,12 @@ jobs:
           TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
         with:
           configPath: "./.tauri/release-config.combined.json"
-          tagName: "v__VERSION__"
-          releaseName: "OpenGOAL Launcher v__VERSION__"
-          releaseBody: "See the assets to download this version and install."
-          releaseDraft: true
-          prerelease: false
+          releaseId: ${{needs.create-release.outputs.release_id}}
 
-  update-release-meta:
-    if: github.repository == 'open-goal/launcher'
-    needs: publish-tauri
-    strategy:
-      fail-fast: false
-      matrix:
-        platform: [ubuntu-latest]
-    runs-on: ${{ matrix.platform }}
+  publish-release:
+    if: github.repository == 'xTVaser/launcher'
+    needs: [create-release, build-app]
+    runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
         with:
@@ -132,16 +135,15 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 16
+          cache: yarn
 
       - name: update release metadata and publish the release
         env:
           GITHUB_TOKEN: ${{ secrets.BOT_PAT }}
-          TAG_VALUE: ${{ github.REF }}
+          RELEASE_ID: ${{needs.create-release.outputs.release_id}}
         run: |
-          pushd ./.github/scripts/update-release-metadata
-          npm ci
-          popd
-          node ./.github/scripts/update-release-metadata/index.js
+          yarn install --frozen-lockfile
+          yarn update-release-meta
 
       - name: commit release metadata change
         uses: EndBug/add-and-commit@v9
