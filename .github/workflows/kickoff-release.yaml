@@ -36,7 +36,7 @@ jobs:
       - name: Bump Version
         id: version-bump
         run: |
-          yarn version --${{ github.event.inputs.bump }} --no-git-tag-version
+          yarn version ${{ github.event.inputs.bump }} --no-git-tag-version
           NEW_VERSION=$(awk '/version/{gsub(/("|",)/,"",$2);print $2}' package.json)
           sed -i "/APP_VERSION/c\version = \""$NEW_VERSION"\" # APP_VERSION" ./src-tauri/Cargo.toml
           sed -i "/\"version\":/c\    \"version\": \""$NEW_VERSION"\"" ./src-tauri/tauri.conf.json
