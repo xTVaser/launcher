@@ -97,7 +97,7 @@ jobs:
       - name: Prepare Sidecars for Build
         if: matrix.os == 'windows'
         run: |
-          mkdir -p ./src-tauri/bin/
+          mkdir -p ./src-tauri/bin/ 2> $null
           cp ./third-party/glew_2.2.0/windows/glewinfo.exe ./src-tauri/bin
           ls ./src-tauri/bin
 
