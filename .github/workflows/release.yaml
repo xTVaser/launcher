@@ -12,6 +12,9 @@ jobs:
     outputs:
       release_id: ${{ steps.get_release_id.outputs.release_id }}
     steps:
+      - uses: actions/checkout@v3
+        with:
+          token: ${{ secrets.BOT_PAT }}
       # Create the release, use `gh` CLI so we can auto generate the notes
       - name: Create Release
         env:
