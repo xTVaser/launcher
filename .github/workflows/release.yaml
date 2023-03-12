@@ -21,6 +21,8 @@ jobs:
           gh release create ${TAG_VAL} --generate-notes --draft --repo xTVaser/launcher
       # Get the internal ID of the release so that Tauri's action can use it to upload assets
       - name: Get Release ID
+        env:
+          GH_TOKEN: ${{ secrets.BOT_PAT }}
         id: get_release_id
         run: |
           TAG_VAL=$(echo ${{ github.REF }} | awk -F'refs/tags/' '{print $2}')
