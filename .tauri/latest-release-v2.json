@@ -1,15 +1,15 @@
 {
-  "name": "v2.0.14",
+  "name": "v2.0.15",
   "notes": "{\"changes\":[]}",
-  "pub_date": "2023-03-12T20:19:29Z",
+  "pub_date": "2023-03-12T20:34:04Z",
   "platforms": {
     "linux-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTU1FRci9NckROT2RyVjdWKzkrdGo2UjZ6VHdCcTNiTWpHaGJPUEtvSVR3RlczWllFSVFxNk9lY3F5WWRXSmxYNnQ1WUdkYVpncGxqVWZpYlRHZUJlYjlKSmlsVXJka3dBPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjc4NjUyNzcyCWZpbGU6b3Blbi1nb2FsLWxhdW5jaGVyXzIuMC4xNF9hbWQ2NC5BcHBJbWFnZS50YXIuZ3oKWk51M1o4OUU0QVhUT2ZURGgvNUVyS29IQS9WSGk1M2hzUEZsclkxeGdiQWJ3VmlDTk93clEwWTlPSmQ2RTZTZEZlNUwrYlp3VGY4NzBtaG0zb2NYQXc9PQo=",
-      "url": "https://github.com/xTVaser/launcher/releases/download/v2.0.14/OpenGOAL-Launcher_2.0.14_amd64.AppImage.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTU1FRci9NckROT1QvdlRnM1U1dmFld3ZPT3o4a09NL29XRHJTeW5IL1BJSzJ5SGpEREJKcTN1VzlaYU5NRlZLS3ZNbkhKMG9YeHpZKytYRnB4N3NId2ZYalVwUzg5T1FNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjc4NjUzNjg1CWZpbGU6b3Blbi1nb2FsLWxhdW5jaGVyXzIuMC4xNV9hbWQ2NC5BcHBJbWFnZS50YXIuZ3oKRVM2NlJWYS9nRXRhd2FDQkY1V3gzTUZVd1NrUDg4L1JudlRKdy9xWElwQmFkZllNTVpsZ0xXdDM5a244MnN4ZWxsemo2OHgrMGdwdE9uUWNpaXpkQlE9PQo=",
+      "url": "https://github.com/xTVaser/launcher/releases/download/v2.0.15/OpenGOAL-Launcher_2.0.15_amd64.AppImage.tar.gz"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTU1FRci9NckROT1NsZUYwM1RNQzBpVVJiMTdRTFI3cS9RdkwxWnpkMFJTVWpidGJmM09JaDZBWmxTUVZKS3h1RkZrTEhQNmVrdnYxUE9OSmxKdUVDTzdmQWxPQjJVZFFNPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjc4NjUyODEyCWZpbGU6T3BlbkdPQUwtTGF1bmNoZXJfMi4wLjE0X3g2NF9lbi1VUy5tc2kuemlwCkJwSW9WdVRXOVVhazZxbERSU1BnRndJRnYwVVVVYUtwZFROMG85Y3VidGptSzRqbEQ4SjlSZlhOQXFRMVdFZDRuWVlLTEJDSkZNWUJaNWd4UDhjcERBPT0K",
-      "url": "https://github.com/xTVaser/launcher/releases/download/v2.0.14/OpenGOAL-Launcher_2.0.14_x64_en-US.msi.zip"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTU1FRci9NckROT2NsR0hhdTFmYmdJSDlhNGtUUDFFajQzZ3hmbFpjM2R2TzlacUxndnZaS2VuY2liQTFWTFU3T29xTFQxNVZqZXY3Y2JmRDFZOFdTQ3MyQzJ2VWptaFFnPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNjc4NjUzNzU3CWZpbGU6T3BlbkdPQUwtTGF1bmNoZXJfMi4wLjE1X3g2NF9lbi1VUy5tc2kuemlwCldwTzRaSmlOVEliVmE5MlBLK2psRjgyMUo0czV6L0hnbmh1UncydFlZWjZ4NkdPYmNRb1NlTEdaRjVDZWtLa2RTWDJ6MFlvKzdRdlpXOEV5SjVLd0RnPT0K",
+      "url": "https://github.com/xTVaser/launcher/releases/download/v2.0.15/OpenGOAL-Launcher_2.0.15_x64_en-US.msi.zip"
     }
   }
 }
