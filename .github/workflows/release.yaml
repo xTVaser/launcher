@@ -94,21 +94,6 @@ jobs:
       - name: Prepare Release Config
         run: yarn prepare-release-config
 
-      - name: Prepare Sidecars for Build
-        if: matrix.os == 'windows'
-        run: |
-          mkdir -p ./src-tauri/bin/ 2> $null
-          cp ./third-party/glew_2.2.0/windows/glewinfo.exe ./src-tauri/bin
-          ls ./src-tauri/bin
-
-      - name: Prepare Resources for Build
-        if: matrix.os == 'linux'
-        run: |
-          mkdir -p ./src-tauri/bin/
-          cp ./third-party/glew_2.2.0/linux/glewinfo ./src-tauri/bin
-          chmod +x ./src-tauri/bin/*
-          ls ./src-tauri/bin
-
       - uses: tauri-apps/tauri-action@v0
         name: Build Tauri App
         timeout-minutes: 30
