@@ -51,7 +51,7 @@ if (releaseTag === undefined || releaseTag === "") {
 const releases = await octokit.rest.repos.listReleases({
   owner: "xTVaser",
   repo: "launcher",
-  per_page: 100
+  per_page: 100,
 });
 
 // NOTE - assumes the release is in the first page
@@ -62,5 +62,5 @@ for (const release of releases.data) {
   }
 }
 
-console.log("Couldn't find release with that tag")
+console.log("Couldn't find release with that tag");
 process.exit(1);

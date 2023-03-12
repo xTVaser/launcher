@@ -114,11 +114,13 @@ if (releaseId === undefined || releaseId === "") {
 }
 
 // Pull down the `launcher` release metadata
-const launcherRelease = await octokit.rest.repos.getRelease({
-  owner: "xTVaser",
-  repo: "launcher",
-  release_id: releaseId,
-});
+const launcherRelease = (
+  await octokit.rest.repos.getRelease({
+    owner: "xTVaser",
+    repo: "launcher",
+    release_id: releaseId,
+  })
+).data;
 
 if (launcherRelease === undefined) {
   console.log(`Couldn't find launcher release with id ${releaseId}`);
@@ -176,7 +178,7 @@ const releaseMeta = {
       signature: linuxSignature,
       url: `https://github.com/xTVaser/launcher/releases/download/${
         launcherRelease.tag_name
-      }/OpenGOAL-Launcher_${tagToSearchFor.replace(
+      }/OpenGOAL-Launcher_${launcherRelease.tag_name.replace(
         "v",
         ""
       )}_amd64.AppImage.tar.gz`,
@@ -185,7 +187,10 @@ const releaseMeta = {
       signature: windowsSignature,
       url: `https://github.com/xTVaser/launcher/releases/download/${
         launcherRelease.tag_name
-      }/OpenGOAL-Launcher_${tagToSearchFor.replace("v", "")}_x64_en-US.msi.zip`,
+      }/OpenGOAL-Launcher_${launcherRelease.tag_name.replace(
+        "v",
+        ""
+      )}_x64_en-US.msi.zip`,
     },
   },
 };
