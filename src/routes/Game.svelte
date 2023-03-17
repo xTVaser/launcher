@@ -15,6 +15,7 @@
   import { getActiveVersion, getActiveVersionFolder } from "$lib/rpc/versions";
   import GameToolsNotSet from "../components/games/GameToolsNotSet.svelte";
   import { VersionStore } from "$lib/stores/VersionStore";
+  import { infoLog } from "$lib/rpc/logging";
 
   const params = useParams();
   let activeGame = SupportedGame.Jak1;
@@ -29,6 +30,7 @@
   let versionMismatchDetected = false;
 
   onMount(async () => {
+    infoLog(`loading game page for - ${$params["game_name"]}`);
     // Figure out what game we are displaying
     if (
       $params["game_name"] !== undefined &&
@@ -41,12 +43,14 @@
     }
 
     // First off, check that they've downloaded and have a jak-project release set
-    // TODO - and that it's still downloaded
+    infoLog(`loading game page, attempting to get active version info`);
     $VersionStore.activeVersionType = await getActiveVersionFolder();
     $VersionStore.activeVersionName = await getActiveVersion();
+    infoLog(`loading game page, version info ${$VersionStore.activeVersionType}:${$VersionStore.activeVersionName}`);
 
     // First obvious thing to check -- is the game installed at all
     gameInstalled = await isGameInstalled(getInternalName(activeGame));
+    infoLog(`loading game page, installed? ${gameInstalled}`);
 
     // Next step, check if there is a version mismatch
     // - they installed the game before with a different version than what they currently have selected
@@ -56,14 +60,17 @@
       installedVersionFolder = await getInstalledVersionFolder(
         getInternalName(activeGame)
       );
+      infoLog(`loading game page, installed version info ${installedVersionFolder}:${installedVersion}`);
       if (
         installedVersion !== $VersionStore.activeVersionName ||
         installedVersionFolder !== $VersionStore.activeVersionType
       ) {
+        infoLog(`loading game page, mismatch detected`);
         versionMismatchDetected = true;
       }
     }
 
+    infoLog(`loading game page, component loaded!`);
     componentLoaded = true;
   });
 

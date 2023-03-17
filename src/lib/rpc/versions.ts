@@ -1,6 +1,6 @@
 import { toastStore } from "$lib/stores/ToastStore";
 import { invoke } from "@tauri-apps/api/tauri";
-import { exceptionLog } from "./logging";
+import { exceptionLog, infoLog } from "./logging";
 
 export type VersionFolders = null | "official" | "unofficial" | "devel";
 
@@ -70,6 +70,7 @@ export async function getActiveVersion(): Promise<string | null> {
 
 export async function getActiveVersionFolder(): Promise<VersionFolders> {
   try {
+    infoLog("calling get_active_tooling_version_folder");
     return await invoke("get_active_tooling_version_folder", {});
   } catch (e) {
     exceptionLog("Unable to get active version type", e);

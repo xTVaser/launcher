@@ -1,18 +1,23 @@
 use std::path::Path;
 
+use log::info;
 use tauri::Manager;
 
 use super::CommandError;
 
 #[tauri::command]
-pub async fn close_splashscreen(window: tauri::Window) {
+pub async fn close_splashscreen(window: tauri::Window) -> Result<(), CommandError> {
   // Close splashscreen
   if let Some(splashscreen) = window.get_window("splashscreen") {
-    splashscreen.close().unwrap();
+    info!("closing the splash screen");
+    splashscreen.close()?;
   }
   // Show main window
-  // TODO - cleanup this, return an error if we can't close it
-  window.get_window("main").unwrap().show().unwrap();
+  if let Some(main_window) = window.get_window("main") {
+    info!("opening the main window");
+    main_window.show()?;
+  }
+  Ok(())
 }
 
 #[tauri::command]

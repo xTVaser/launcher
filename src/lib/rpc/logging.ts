@@ -15,6 +15,7 @@ import { invoke } from "@tauri-apps/api/tauri";
 
 async function genericLog(level: string, log: String): Promise<void> {
   try {
+    console.log(`[OG:${level}] ${log}`);
     return await invoke("frontend_log", {
       level: level,
       log: log,

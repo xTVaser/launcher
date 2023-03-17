@@ -1,4 +1,5 @@
 use crate::{config::LauncherConfig, util::file::delete_dir};
+use log::info;
 use tauri::Manager;
 
 use super::CommandError;
@@ -187,6 +188,7 @@ pub async fn get_active_tooling_version(
 pub async fn get_active_tooling_version_folder(
   config: tauri::State<'_, tokio::sync::Mutex<LauncherConfig>>,
 ) -> Result<Option<String>, CommandError> {
+  info!("get_active_tooling_version_folder call received");
   let config_lock = config.lock().await;
   Ok(config_lock.active_version_folder.clone())
 }

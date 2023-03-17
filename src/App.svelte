@@ -15,18 +15,13 @@
   import { Toast } from "flowbite-svelte";
   import Help from "./routes/Help.svelte";
   import { toastStore } from "$lib/stores/ToastStore";
+  import { infoLog } from "$lib/rpc/logging";
 
   let revokeSpecificActions = false;
 
   // Events
   onMount(async () => {
-    // TODO - tauri doesn't seem to handle this event being unlistented to properly (go back to closing the window)
-    // - need to make an issue
-    // For now, we'll just handle all close events ourselves
-    await appWindow.listen("tauri://close-requested", async () => {
-      // TODO - confirm during an install
-      await appWindow.close();
-    });
+    infoLog("frontend loaded");
   });
 
   if (!isInDebugMode()) {
@@ -65,6 +60,7 @@
     <div class="flex h-full">
       <Sidebar />
       <div id="content" class="basis-9/10">
+        <Route path="" component={Game} primary={false} let:params />
         <Route path="/" component={Game} primary={false} let:params />
         <Route path="/:game_name" component={Game} primary={false} let:params />
         <Route
