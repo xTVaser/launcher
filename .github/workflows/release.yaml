@@ -91,9 +91,6 @@ jobs:
           yarn package
           yarn build
 
-      - name: Prepare Release Config
-        run: yarn prepare-release-config
-
       - uses: tauri-apps/tauri-action@v0
         name: Build Tauri App
         timeout-minutes: 30

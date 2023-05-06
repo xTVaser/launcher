@@ -7,7 +7,7 @@ Octokit.plugin(throttling);
 Octokit.plugin(retry);
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
-  userAgent: "open-goal/launcher",
+  userAgent: "xTVaser/launcher",
   log: {
     debug: () => {},
     info: () => {},
@@ -115,7 +115,7 @@ if (releaseId === undefined || releaseId === "") {
 
 // Pull down the `launcher` release metadata
 const { data: launcherRelease } = await octokit.rest.repos.getRelease({
-  owner: "open-goal",
+  owner: "xTVaser",
   repo: "launcher",
   release_id: releaseId,
 });
@@ -130,7 +130,7 @@ const launcherChanges = changesFromBody(launcherRelease.body);
 
 // Retrieve linux and windows signatures
 const { data: releaseAssets } = await octokit.rest.repos.listReleaseAssets({
-  owner: "open-goal",
+  owner: "xTVaser",
   repo: "launcher",
   release_id: releaseId,
   per_page: 100,
@@ -142,7 +142,7 @@ for (var i = 0; i < releaseAssets.length; i++) {
   const asset = releaseAssets[i];
   if (asset.name.toLowerCase().endsWith("appimage.tar.gz.sig")) {
     const assetDownload = await octokit.rest.repos.getReleaseAsset({
-      owner: "open-goal",
+      owner: "xTVaser",
       repo: "launcher",
       asset_id: asset.id,
       headers: {
@@ -153,7 +153,7 @@ for (var i = 0; i < releaseAssets.length; i++) {
   }
   if (asset.name.toLowerCase().endsWith("msi.zip.sig")) {
     const assetDownload = await octokit.rest.repos.getReleaseAsset({
-      owner: "open-goal",
+      owner: "xTVaser",
       repo: "launcher",
       asset_id: asset.id,
       headers: {
@@ -174,7 +174,7 @@ const releaseMeta = {
   platforms: {
     "linux-x86_64": {
       signature: linuxSignature,
-      url: `https://github.com/open-goal/launcher/releases/download/${
+      url: `https://github.com/xTVaser/launcher/releases/download/${
         launcherRelease.tag_name
       }/OpenGOAL-Launcher_${launcherRelease.tag_name.replace(
         "v",
@@ -183,7 +183,7 @@ const releaseMeta = {
     },
     "windows-x86_64": {
       signature: windowsSignature,
-      url: `https://github.com/open-goal/launcher/releases/download/${
+      url: `https://github.com/xTVaser/launcher/releases/download/${
         launcherRelease.tag_name
       }/OpenGOAL-Launcher_${launcherRelease.tag_name.replace(
         "v",
@@ -199,7 +199,7 @@ fs.writeFileSync(
 
 // Publish the release
 await octokit.rest.repos.updateRelease({
-  owner: "open-goal",
+  owner: "xTVaser",
   repo: "launcher",
   release_id: launcherRelease.id,
   draft: false,
