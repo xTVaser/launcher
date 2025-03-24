@@ -18,7 +18,7 @@ permissions:
 
 jobs:
   create-tag:
-    if: github.repository == 'open-goal/launcher'
+    if: github.repository == 'xTVaser/launcher'
     name: "Create New Tag"
     runs-on: ubuntu-latest
     outputs:
@@ -70,7 +70,7 @@ jobs:
 
   create-release:
     needs: [create-tag]
-    if: github.repository == 'open-goal/launcher'
+    if: github.repository == 'xTVaser/launcher'
     name: "Create Release"
     runs-on: ubuntu-latest
     outputs:
@@ -85,7 +85,7 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          gh release create ${{needs.create-tag.outputs.new_tag}} --generate-notes --draft --repo open-goal/launcher
+          gh release create ${{needs.create-tag.outputs.new_tag}} --generate-notes --draft --repo xTVaser/launcher
 
       - name: Setup Node
         uses: actions/setup-node@v4
@@ -107,7 +107,7 @@ jobs:
           echo "release_id=${RELEASE_ID}" >> $GITHUB_OUTPUT
 
   build-app:
-    if: github.repository == 'open-goal/launcher'
+    if: github.repository == 'xTVaser/launcher'
     needs: [create-release]
     strategy:
       fail-fast: false
@@ -155,14 +155,14 @@ jobs:
         timeout-minutes: 30
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          TAURI_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
-          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_KEY_PASSWORD }}
+          TAURI_SIGNING_PRIVATE_KEY: ${{ secrets.TAURI_PRIVATE_KEY }}
+          TAURI_SIGNING_KEY_PASSWORD: ${{ secrets.TAURI_KEY_PASSWORD }}
         with:
           args: "--verbose --config ./.tauri/release-config.json"
           releaseId: ${{needs.create-release.outputs.release_id}}
 
   verify-release:
-    if: github.repository == 'open-goal/launcher'
+    if: github.repository == 'xTVaser/launcher'
     needs: [create-release, build-app]
     runs-on: ubuntu-latest
     steps:
@@ -189,7 +189,7 @@ jobs:
         run: yarn verify-release-assets
 
   publish-release:
-    if: github.repository == 'open-goal/launcher'
+    if: github.repository == 'xTVaser/launcher'
     needs: [create-release, build-app, verify-release]
     runs-on: ubuntu-latest
     steps:
