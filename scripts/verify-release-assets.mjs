@@ -11,7 +11,7 @@ Octokit.plugin(throttling);
 Octokit.plugin(retry);
 const octokit = new Octokit({
   auth: process.env.GITHUB_TOKEN,
-  userAgent: "open-goal/launcher",
+  userAgent: "xTVaser/launcher",
   log: {
     debug: () => {},
     info: () => {},
@@ -49,7 +49,7 @@ if (releaseId === undefined || releaseId === "") {
 
 // Pull down the `launcher` release metadata
 const assets = await octokit.rest.repos.listReleaseAssets({
-  owner: "open-goal",
+  owner: "xTVaser",
   repo: "launcher",
   release_id: releaseId,
   per_page: 100,
