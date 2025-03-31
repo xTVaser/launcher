@@ -1,19 +1,23 @@
 {
-  "name": "v2.6.4",
-  "notes": "{\"changes\":[{\"description\":\"macos: isolate and check the macOS major version number\",\"contributor\":\"xTVaser\",\"pullRequestUrl\":\"https://github.com/open-goal/launcher/pull/664\"},{\"description\":\"README: Add macOS info about log location.\",\"contributor\":\"MaddTheSane\",\"pullRequestUrl\":\"https://github.com/open-goal/launcher/pull/693\"}]}",
-  "pub_date": "2025-03-08T18:29:17Z",
+  "version": "2.6.10",
+  "notes": "{\"changes\":[]}",
+  "pub_date": "2025-03-31T00:45:33.002Z",
   "platforms": {
     "linux-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTU1FRci9NckROT2U5eVZobFRUTUw3NjBtMXQzMU50dmJmY1l5TXRTTnVmN1RHTzliRkpRYllOOERvcm1QMGpVUGdEaXYrdFRFM3l1ckd3NFR2UHFFYUd4dGFDQTkxOXcwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQxNDU5MDk2CWZpbGU6b3Blbi1nb2FsLWxhdW5jaGVyXzIuNi40X2FtZDY0LkFwcEltYWdlLnRhci5negpXSStZb2E2bTRSeVJLL0JEYWg3WHFDakdBV2o4RjA0cEpzemt2MXRtOXNhSWFSdVZOMnJTL3M4Z1c4TnlCNmpDR1dtUUY1d0NrcE9sMko2VExmVklEZz09Cg==",
-      "url": "https://github.com/open-goal/launcher/releases/download/v2.6.4/open-goal-launcher_2.6.4_amd64.AppImage.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTU1FRci9NckROT1UwdDZKY3RDZDRaMC9CZGNUT3FTU2xrNXI4QTZyK3BkWVB0L0dYWi9BS2NXWmpCL2VMQ0ltRHBBZUNyRTVzNTZZaXdIWllCNGk3VS80ZzhkVmRFS1FvPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQzMzgxNjcyCWZpbGU6T3BlbkdPQUwtTGF1bmNoZXJfMi42LjEwX2FtZDY0LkFwcEltYWdlCjJud2Fsa0J3TytYakRhNVg0cFRUTjRvbFg2NzhnTXVQWkxJS21uWlFUZXdXVVpxcDhQckFGSkFPaldNQkdSRUFhTFpWL0VpbkRGS1NZZm1mZnUzeEN3PT0K",
+      "url": "https://github.com/xTVaser/launcher/releases/latest/download/OpenGOAL-Launcher_2.6.10_amd64.AppImage"
+    },
+    "darwin-aarch64": {
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTU1FRci9NckROT1VEM0ppdE9kT1BvQUhKQnNmUHh0UGFqdUpGTkZCb0dDSU9PVDFqRUtyckhXai9NSWcwVXlWWnliTlpkelprRFhYcEdmZ2tWd0VidTk5M3dOR29WUXd3PQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQzMzgxNzM5CWZpbGU6T3BlbkdPQUwtTGF1bmNoZXIuYXBwLnRhci5negpMRGIvU214TDBMa2ZnckJyZDFzUXVzd3Z6V08wZjJybHhjdm5RVTVHTmdtNXBvOHhCMHJTalh4Q1ZjL2JpaVFZMkg2ZVJqVGIxOVBmNnpkOVhlcmtEZz09Cg==",
+      "url": "https://github.com/xTVaser/launcher/releases/latest/download/OpenGOAL-Launcher_aarch64.app.tar.gz"
     },
     "windows-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTU1FRci9NckROT1dyM3lsU1NIMElHbkdWOTZGM0NDbHJsTlVCNmJwN1FHWkV5RVVSRlZSKzRRSFRBb2Q0TkZDejRrdXZqbTAyVnNtWGhSSnZ3UkFvWTlZUTY4N2FJK2dZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQxNDU5MzY4CWZpbGU6T3BlbkdPQUwtTGF1bmNoZXJfMi42LjRfeDY0X2VuLVVTLm1zaS56aXAKam85Rlh1d1BnRlZzTDZGcWNiYXAzWENBaFBFM2RHdmZ4SGdOSk54M2VkWlNWaW1YcVFIeDZnaVNkM1EwVjEvcVhjamFzUDNsWGtINUVDMmJWcDdxQVE9PQo=",
-      "url": "https://github.com/open-goal/launcher/releases/download/v2.6.4/OpenGOAL-Launcher_2.6.4_x64_en-US.msi.zip"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTU1FRci9NckROT2RxRzR4dW1jZDZzeVRZd2YycWhYcVAyWE1KcVdHMDlqVGRYbDVuSTRBRDF5YVpvNnJoSHJTd1VGWnNUaDBsSDc2T0V2cDhWbDcwekVTcGgvaUlpblFZPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQzMzgxOTA2CWZpbGU6T3BlbkdPQUwtTGF1bmNoZXJfMi42LjEwX3g2NF9lbi1VUy5tc2kuemlwCjBBckVkZXkxN01PZWdhR2dzZERQQW9TVkdLTnMyb0pzanZYcWVYQkdoTm5McndIVFE3aFArUkpVanEwZzlXekZuaHhaSmN4d2xVaU01V251K3FZbUJBPT0K",
+      "url": "https://github.com/xTVaser/launcher/releases/latest/download/OpenGOAL-Launcher_2.6.10_x64_en-US.msi.zip"
     },
     "darwin-x86_64": {
-      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTU1FRci9NckROT1dJRXRpWjZjMXUxTmpCMG1sVnZUVHhIb0dwbkpBdGZudVFjRTVadHZoTmJhUnZkT2RlZlhtTURUS0RGMmJkNjA0ei9UYjhjRXdmR1RtMU83bEhoWGdrPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQxNDU5MzM2CWZpbGU6T3BlbkdPQUwtTGF1bmNoZXIuYXBwLnRhci5negp0YmRUZ1pLek1ZWG5IQ0hLUDVCT2NCVzdya0hWYjRUMFpxRk1IQjlpQmlTVjAyWkVTaS9FaVlPbGp1SFhsT0hsMXFUcGJqaTJzN1J5Sm1SRE03d1JCQT09Cg==",
-      "url": "https://github.com/open-goal/launcher/releases/download/v2.6.4/OpenGOAL-Launcher_x64.app.tar.gz"
+      "signature": "dW50cnVzdGVkIGNvbW1lbnQ6IHNpZ25hdHVyZSBmcm9tIHRhdXJpIHNlY3JldCBrZXkKUlVTU1FRci9NckROT1dXZ1RNb2JDeEFlTk16bTN6Nk8zanFyUzc1R3ppbzhraTdjZEh1K3FpWlpOTjNRaVZKNXFobVdmYXNjNWcvSzBSblhXU1RsSk1US2pyMktEV2REbXcwPQp0cnVzdGVkIGNvbW1lbnQ6IHRpbWVzdGFtcDoxNzQzMzgxOTI4CWZpbGU6T3BlbkdPQUwtTGF1bmNoZXIuYXBwLnRhci5negphZklDN0ZIY1J0ckpBUGxVVVZvbDNaeG9KQlNCSmtBMjZDTmM5LzNJVWt2OEs4QXVvaXBrMFAzc0R1Zks4RXVPbU11NE9pcGloaEVMYkRXWHd1N3BDUT09Cg==",
+      "url": "https://github.com/xTVaser/launcher/releases/latest/download/OpenGOAL-Launcher_x64.app.tar.gz"
     }
   }
 }
