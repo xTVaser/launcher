@@ -3248,7 +3248,7 @@ dependencies = [
 
 [[package]]
 name = "opengoal-launcher"
-version = "2.6.9"
+version = "2.6.10"
 dependencies = [
  "backtrace",
  "chrono",
